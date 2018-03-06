@@ -1,0 +1,55 @@
+{% if collection.image %}
+  {%- assign collection_image = collection.image -%}
+{% elsif collection.products.first and collection.products.first.images != empty %}
+  {%- assign collection_image = collection.products.first.featured_image -%}
+{% else %}
+  {% assign collection_image = blank %}
+{% endif %}
+
+<div class="item">
+  <div class="item__img">
+    <a href="{{ product.url | within: collection }}">
+      <img id="{{ img_id }}"
+           class="grid-view-item__image lazyload"
+           src="{{ product.featured_image | img_url: '300x300' }}"
+           data-src="{{ img_url }}"
+           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+           data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+           data-sizes="auto"
+           alt="{{ product.featured_image.alt | escape }}">
+    </a>
+  </div>
+  <p class="item__vendor">
+    {{ product.vendor }}
+  <p>
+  <p class="item__title">
+    <a href="{{ product.url | within: collection }}">
+      {{ product.title }}
+    </a>
+  </p>
+  <div class="item__price">
+    {% if on_sale %}
+          {% if product.price_varies %}
+            {% assign sale_price = product.price | money %}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            <strong>{{ 'products.product.on_sale' | t }}</strong>
+            {{ product.price | money }}
+          {% endif %}
+        {% else %}
+          {% if product.price_varies %}
+            {% assign price = product.price | money %}
+            {{ 'products.general.from_text_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
+        {% endif %}
+        {% if sold_out %}
+          <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+        {% endif %}
+        {% if on_sale %}
+          <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+          <br><s>{{ product.compare_at_price | money }}</s>
+        {% endif %}
+  </div>
+</div>

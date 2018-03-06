@@ -1,0 +1,10 @@
+development:
+  store: abcstoretest11.myshopify.com
+  password: f7c8c5790f593ec8e3bcbe48bc322fac
+  theme_id: "live"
+  bucket_size: 40
+  refill_rate: 2
+  ignore_files:
+    - "*.swp"
+    - "*~"
+    - "config/settings_data.json"

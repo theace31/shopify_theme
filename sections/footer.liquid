@@ -1,0 +1,63 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="row">
+    <div class="small-12 medium-1 column">
+      <a class="mcsm mcsm--alt" href="#top" role="button"></a>
+    </div>
+    <div class="hide-for-small medium-3 column">
+      <h5>Address</h5>
+      <address>
+        2013 Lincoln Blvd<br>
+        Santa Monica, CA 90025
+      </address>
+      <h5>Call Us</h5>
+      <a href="tel: (310) 882-5684">(310) 882-5684</a>
+    </div>
+    <div class="hide-for-small medium-2 column">
+      <h5>Shop</h5>
+      <ul>
+      {% for link in linklists.shop.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <div class="hide-for-small medium-2 column">
+      <h5>Brands</h5>
+      <ul>
+      {% for link in linklists.brands.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <div class="hide-for-small medium-2 column">
+      <h5>Help</h5>
+      <ul>
+      {% for link in linklists.help.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <div class="hide-for-small medium-2 column">
+      <h5>Follow Us</h5>
+      <ul>
+      {% for link in linklists.find-us.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <div class="small-12 column">
+      <center>
+        <small>
+          &copy; Copyright 2018 Moto Club Di Santa Monica. All Rights Reserved
+        </small>
+      </center>
+    </div>
+  </div>
+</footer>

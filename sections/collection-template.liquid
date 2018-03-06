@@ -1,0 +1,143 @@
+{% paginate collection.products by 30 %}
+
+<div data-section-id="{{ section.id }}" data-section-type="collection-template">
+  <section class="collection">
+    <div class="row">
+      <div class="small-12 column">
+        {% include 'breadcrumbs' %}
+      </div>
+      <header class="small-12 column">
+        <h1 class="collection__title">{{ collection.title }}</h1>
+        <span class="collection__count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
+      </header>
+      <nav class="collection__filters hide-for-small medium-2 column">
+          {% include 'tag-filters' %}
+      </nav>
+      <div class="collection__container small-12 medium-10 column">
+        <div class="small-12 column">
+          {% include 'sort-by' %}
+        </div>
+        {% for product in collection.products %}
+        <div class="small-12 medium-4 column">
+          {% include 'item' %}
+        </div>
+        {% endfor %}
+        <div class="small-12 column">
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endpaginate %}
+
+
+{% schema %}
+  {
+    "name": "Collection pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "grid",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "grid",
+        "label": "Products per row (grid only)",
+        "default": "4",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "rows",
+        "label": "Rows per page (grid only)",
+        "default": "2",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "show_collection_image",
+        "label": "Show collection image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show product vendors",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "sort_enable",
+        "label": "Enable sorting",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "tags_enable",
+        "label": "Enable tag filtering",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

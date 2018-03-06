@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="small-12 column">
+      <h3>New Products</h3>
+    </div>
+    <div class="row">
+      {% for product in collections.new-arrivals.products %}
+      <div class="small-6 medium-3 column">
+        {% include 'item' %}
+      </div>
+      {% endfor %}
+    </div>
+</div>

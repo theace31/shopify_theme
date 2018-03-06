@@ -1,0 +1,125 @@
+{% include 'mobile-nav' %}
+<header class="site-header" role="banner" id="top">
+  <div class="row">
+    <div class="small-12 medium-3 column">
+      <button class="js-mm-trigger icon-menu show-for-medium-down"></button>
+      {% if template.name == 'index' %}
+        <h1 class="mcsm mcsm--main" itemscope itemtype="http://schema.org/Organization">
+          <a href="/">Santa Monica Moto Club</a>
+        </h1>
+      {% else %}
+        <a href="/" class="mcsm mcsm--main">Santa Monica Moto Club</a>
+      {% endif %}
+    </div>
+    <div class="hide-for-medium-down medium-7 column">
+      {% include 'site-nav' %}
+    </div>
+    <div class="site-cart">
+      <a href="/cart" id="CartCount">
+          <span class="icon-cart"></span>
+          {% if cart.item_count > 0 %}
+            <span class="site-cart__count--active">
+              {{ cart.item_count }}
+            </span>
+          {% else %}
+          <span class="site-cart__count">
+            {{ cart.item_count }}
+          </span>
+          {% endif %}
+      </a>
+    </div>
+    <!-- <div class="site-search">
+      <button class="js-search-trigger icon-search"></button>
+    </div> -->
+  </div>
+</header>
+{% if section.settings.message %}
+    {% if section.settings.home_page_only == false or template.name == 'index' %}
+      {% if section.settings.message_link == blank %}
+        <div class="announcement-bar">
+      {% else %}
+        <a href="{{ section.settings.message_link }}" class="announcement-bar announcement-bar--link">
+      {% endif %}
+        <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
+      {% if section.settings.message_link == blank %}
+        </div>
+      {% else %}
+        </a>
+      {% endif %}
+    {% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "align_logo",
+        "label": "Logo alignment",
+        "default": "left",
+        "options": [
+          {"value": "left", "label": "Left"},
+          {"value": "center", "label": "Centered"}
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "text",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "default": "100"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "message",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "home_page_only",
+        "label": "Home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "message_text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "message_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Bar",
+        "default": "#7796a8"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#fff"
+      }
+    ]
+  }
+{% endschema %}

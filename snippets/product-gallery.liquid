@@ -1,0 +1,7 @@
+<div class="js-product-carousel product-carousel">
+  {% for image in product.images %}
+    <div class="item">
+      <img class="lazyOwl" data-src="{{ image.src | img_url: 'original' }}" alt="{{ image.alt | escape }}">
+    </div>
+  {% endfor %}
+</div>
